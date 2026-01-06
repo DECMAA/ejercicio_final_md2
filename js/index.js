@@ -23,7 +23,6 @@ const semana = [
     { dia: "Domingo", temp: 12 },
 
 ]
-
 let html = document.getElementById("ciudades_contenedor")
 
 let template = ""
@@ -38,10 +37,31 @@ for(let i = 0; i <ciudades.length;i++){
                 <h5 class="card-title">${ciudades[i].name}</h5>
                 <h6 class="card-title">${ciudades[i].temp} °C</h6>
                 <h7 class="card-title">${ciudades[i].estado} ${ciudades[i].icon}</h7>
+
+                    <button class="btn btn-info mt-2" onclick="mostrarSemana('${ciudades[i].name}')">
+                        Ver temperaturas de la semana
+                    </button>
+
                   </div>
+
         </div>
         </div>
+
     `
 }
 
 html.innerHTML = template
+
+document.getElementById("contenedor").innerHTML = template;
+
+// Función que muestra las temperaturas de la semana
+function mostrarSemana(nombreCiudad) {
+    let mensaje = `Temperaturas de la semana en ${nombreCiudad}:\n\n`;
+    semana.forEach(dia => {
+        mensaje += `${dia.dia}: ${dia.temp} °C\n`;
+    });
+    alert(mensaje);
+}
+
+
+
